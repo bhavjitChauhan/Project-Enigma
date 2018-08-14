@@ -1,11 +1,11 @@
-import pig_latin
-import binary
+from methods import binary, pig_latin
 
 def encode(string, method):
-    return {
+    switch = {
         'Pig Latin': pig_latin.encode(string),
         'Binary': binary.encode(string)
-    }.get(method, invalid_method())
-
-def invalid_method():
-    raise ValueError('Invalid encoding method')
+    }
+    try:
+        return switch.get(method)
+    except:
+        raise ValueError('Invalid encoding method')

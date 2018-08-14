@@ -60,11 +60,11 @@ class Encode:
         text = self.input_box.get(1.0, END)
         try:
             text = encode(text, self.method.get())
+            text = text.replace('\n','')
         except ValueError:
             self.info.set('ERROR: Invalid encoding method')
         except:
             self.info.set('ERROR: Unable to encode text')
-        text = text.replace('\n','')
         self.input.set(text)
         self.output_box.delete(1.0, END)
         self.output_box.insert(1.0, self.input.get())
