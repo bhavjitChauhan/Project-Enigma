@@ -12,7 +12,7 @@ class Encode:
         self.method_label['text'] = 'Method'
         self.method_label.grid(row=0, column=0, sticky=E, pady=10, padx=10)
 
-        self.methods = ['Binary', 'Pig Latin']
+        self.methods = ['Binary', 'Pig Latin', 'Hex']
         self.method = StringVar(master)
         self.method.set('None')
 

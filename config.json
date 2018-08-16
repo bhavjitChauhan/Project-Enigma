@@ -6,5 +6,8 @@
     "pig-latin": {
         "case": "lower",
         "end": "a"
+    },
+    "hex": {
+        "delimiter": ""
     }
 }

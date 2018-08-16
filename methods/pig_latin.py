@@ -7,10 +7,18 @@ def encode(string):
     words = string.split(" ")
     for i in range(len(words)):
         words[i] = words[i][1:] + words[i][0] + config['end']
-    return " ".join(words).lower()
+    if config['case'] == 'upper':
+        words = ' '.join(words).upper()
+    else:
+        words = ' '.join(words).lower()
+    return words
 
 def decode(string):
     words = string.split(" ")
     for i in range(len(words)):
         words[i] = words[i][-(end_length + 1)] + words[i][0:-(end_length + 1)]
-    return " ".join(words).lower()
+    if config['case'] == 'upper':
+        words = ' '.join(words).upper()
+    else:
+        words = ' '.join(words).lower()
+    return words
