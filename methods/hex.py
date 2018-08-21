@@ -1,9 +1,9 @@
 import binascii, re
 import json
-with open('config.json') as f:
-    config = json.load(f)['hex']
 
 def encode(string):
+    with open('config.json') as f:
+        config = json.load(f)['hex']
     string = string.encode('utf-8')
     string = binascii.hexlify(string)
     string = string.decode("utf-8")
@@ -12,6 +12,8 @@ def encode(string):
     return string
 
 def decode(string):
+    with open('config.json') as f:
+        config = json.load(f)['hex']
     string = str(string)
     if not re.match('[0-9]+', string):
         string = string.replace(config['delimiter'], '')

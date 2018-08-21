@@ -1,9 +1,9 @@
 import re
 import json
-with open('config.json') as f:
-    config = json.load(f)['binary']
 
 def encode(string):
+    with open('config.json') as f:
+        config = json.load(f)['binary']
     string = str(string)
     string = ' '.join(format(ord(i), 'b') for i in string)
     string.replace('100000', '00100000')
@@ -12,6 +12,8 @@ def encode(string):
     return string
 
 def decode(string):
+    with open('config.json') as f:
+        config = json.load(f)['binary']
     string = str(string)
     if string[-1] != ' ':
         string += ' '

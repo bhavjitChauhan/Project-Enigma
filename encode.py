@@ -1,8 +1,8 @@
 from methods import binary, pig_latin, hex
 
 def encode(string, method):
-    # if string[-1] == ' ':
-    #     string = string[:-1]
+    if string == ' ':
+        raise ValueError('')
     switch = {
         'Pig Latin': pig_latin.encode(string),
         'Binary': binary.encode(string),

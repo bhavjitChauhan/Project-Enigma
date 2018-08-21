@@ -1,5 +1,6 @@
 from tkinter import *
 from encode import encode
+import config
 
 class Encode:
     def __init__(self, master):
@@ -21,6 +22,14 @@ class Encode:
         self.method_select['relief'] = GROOVE
         self.method_select.grid(row=0, column=1, sticky=W)
 
+        self.image = PhotoImage(file='settings_icon.png')
+
+        self.config_button = Button(self.main_frame)
+        self.config_button['image'] = self.image
+        self.config_button['command'] = self.config_window
+        self.config_button['relief'] = GROOVE
+        self.config_button.grid(row=0, column=2)
+
         self.input_box = Text(self.main_frame, width=40, height=10)
         self.input_box['padx'] = 5
         self.input_box['pady'] = 5
@@ -37,6 +46,7 @@ class Encode:
         self.encode_button['width'] = 10
         self.encode_button['height'] = 2
         self.encode_button['text'] = 'Encode'
+        self.encode_button['cursor'] = 'hand2'
         self.encode_button['command'] = self.update_output
         self.encode_button['relief'] = FLAT
         self.encode_button.grid(row=2, column=0, padx=10, pady=10)
@@ -55,6 +65,9 @@ class Encode:
         self.output_box.config(state=DISABLED)
         self.output_box.grid(row=3, columnspan=5)
 
+    def config_window(self):
+        window = config.config_window(root, self.method.get())
+
     def update_output(self):
         self.output_box.config(state=NORMAL)
         text = self.input_box.get(1.0, END)
@@ -62,7 +75,7 @@ class Encode:
             text = encode(text, self.method.get())
             text = text.replace('\n','')
         except ValueError:
-            self.info.set('ERROR: Invalid encoding method')
+            self.info.set(sys.exc_info()[0])
         except:
             self.info.set('ERROR: Unable to encode text')
         self.input.set(text)
@@ -73,7 +86,8 @@ class Encode:
     def update_info(self, method):
         text = {
             'Pig Latin': '',
-            'Binary': 'BETA: Might not work as intended'
+            'Binary': 'BETA',
+            'Hex': 'BETA'
         }.get(method, '')
         self.info.set(text)
 
